@@ -1,23 +1,18 @@
 import os
-from pathlib import Path
-
 import requests
-from dotenv import load_dotenv
 from datetime import UTC, datetime
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-ENV_FILE = PROJECT_ROOT / ".env"
-
-BASE_URL = "https://api.etherscan.io/v2/api"
-CHAIN_ID = "137"
+from config.settings import (
+    API_KEY,
+    BASE_URL,
+    CHAIN_ID,
+    CONTRACT_ADDRESS,
+)
 
 start_utc = datetime(2025, 11, 10, 0, 0, 0, tzinfo=UTC)
 end_utc = datetime(2025, 11, 20, 23,59, 59, tzinfo=UTC)
-load_dotenv(ENV_FILE)
 
-api_key = os.getenv("ETHERSCAN_API_KEY")
 
-if not api_key:
+if not API_KEY:
     raise RuntimeError ("ETHERSCAN_API_KEY was not found in the .env file.")
 
 
@@ -32,7 +27,7 @@ def get_block_number(timestamp: int, closest: str) -> int:
         "action": "getblocknobytime",
         "timestamp":  timestamp,
         "closest": closest,
-        "apikey":api_key
+        "apikey":API_KEY
     }
 
     try:

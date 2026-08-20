@@ -51,7 +51,8 @@ and analytical outputs.
 - [x] Read on-chain contract values and finish the identity record
 - [x] Create and test an Etherscan V2 API key
 - [x] Resolve listing-week block boundaries
-- [ ] Download the first raw transfer-data window
+- [x] Retrieve and inspect the first 10 raw transfer records
+- [ ] Download the complete raw transfer-data window using pagination
 - [ ] Validate completeness and duplicates
 
 ## Study window
@@ -71,7 +72,8 @@ transfer history.
 
 - [01 - Contract identity validation](docs/01-contract-identity.md)
 - [02 - Etherscan API access](docs/02-etherscan-api-access.md)
-- [03 - Etherscan API access](docs/02-etherscan-api-access.md)
+- [03 - Research Window](docs/03-research-window.md)
+- [04 - First Token Transfer Request](docs/04-first-token-transfer-request.md)
 
 ## Responsible-use disclaimer
 

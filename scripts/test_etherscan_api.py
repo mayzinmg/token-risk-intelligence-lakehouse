@@ -1,22 +1,13 @@
 import os
-from pathlib import Path
-
 import requests
-from dotenv import load_dotenv
+from config.settings import (
+    API_KEY,
+    BASE_URL,
+    CHAIN_ID,
+    CONTRACT_ADDRESS,
+)
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-ENV_FILE = PROJECT_ROOT / ".env"
-
-BASE_URL = "https://api.etherscan.io/v2/api"
-CHAIN_ID = "137"
-CONTRACT_ADDRESS = "0xd2d21ebc27dc39e188bf51fa28d3d09b93ab49c8"
-
-
-load_dotenv(ENV_FILE)
-
-api_key = os.getenv("ETHERSCAN_API_KEY")
-
-if not api_key:
+if not API_KEY:
     raise RuntimeError ("ETHERSCAN_API_KEY was not found in the .env file.")
 
 params = {
@@ -24,7 +15,7 @@ params = {
     "module": "stats",
     "action": "tokensupply",
     "contractaddress": CONTRACT_ADDRESS,
-    "apikey": api_key,
+    "apikey": API_KEY,
 }
 
 try:
