@@ -96,3 +96,78 @@ and source-verification status before interpreting transfers or holder data.
 
 Step 1 passes only when the raw read results have been captured and reconciled
 with the token tracker. API ingestion must not begin before this check passes.
+
+
+## SDB Contract Identity Validation
+
+Network:
+Polygon PoS Mainnet
+
+Chain ID:
+137
+
+Contract Address:
+0xd2d21ebc27dc39e188bf51fa28d3d09b93ab49c8
+
+Contract Name:
+Spring Development Bank Token
+
+Token Symbol:
+SDB
+
+Contract Owner:
+0x407D0Fe8cD1828D92f021A7E0f2E41b90318B906
+
+Token Decimals:
+18
+
+Declared Initial Supply — Raw:
+100000000000000000000000000000
+
+Declared Initial Supply — Human-readable:
+100,000,000,000 SDB
+
+Current Polygon Total Supply — Raw:
+40000000000000000000000000000
+
+Current Polygon Total Supply — Human-readable:
+40,000,000,000 SDB
+
+Difference:
+60,000,000,000 SDB
+
+Current Polygon Supply as Percentage of Initial Supply:
+40%
+
+Sources:
+
+1. PolygonScan Read Contract
+2. Etherscan V2 tokensupply API
+3. Official MEXC SDB listing announcement
+
+Validation Result:
+The totalSupply value returned by PolygonScan Read Contract exactly matches the raw supply returned by the Etherscan V2 API.
+
+Observation:
+The contract declares an initial supply of 100 billion SDB, but the Polygon contract currently reports a total supply of 40 billion SDB.
+
+Meaning:
+INITIAL_SUPPLY represents the supply defined when the token contract was designed. The current totalSupply value represents the supply currently recorded by this particular Polygon contract. It should not automatically be interpreted as global supply or circulating supply.
+
+Possible Explanations:
+
+1. Some tokens may have been moved to other chains using the token’s omnichain burn-and-mint mechanism.
+2. The MEXC value may represent the initial or global supply rather than the current Polygon supply.
+3. The figures may use different supply definitions.
+4. Additional mint, burn, or cross-chain events may have changed the Polygon supply.
+
+What This Does Not Prove:
+
+1. It does not prove that 60 billion SDB was sold.
+2. It does not prove that 60 billion SDB disappeared.
+3. It does not prove fraud or manipulation.
+4. It does not identify who controls tokens on other chains.
+5. It does not establish the current circulating supply.
+
+Next Research Question:
+Can the 60-billion-SDB difference be explained by mint, burn, or cross-chain transfer events?

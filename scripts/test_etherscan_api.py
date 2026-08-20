@@ -50,3 +50,9 @@ payload = response.json()
 print("API status:", payload.get("status"))
 print("API message:", payload.get("message"))
 print("Raw total supply:", payload.get("result"))
+
+owner="0x407D0Fe8cD1828D92f021A7E0f2E41b90318B906"
+name="Spring Development Bank Token"
+symbol="SDB"
+INITIAL_SUPPLY=100000000000000000000000000000
+
