@@ -48,9 +48,9 @@ and analytical outputs.
 - [x] Define a neutral research question
 - [x] Identify the candidate Polygon contract
 - [x] Cross-check the contract against the PolygonScan token tracker
-- [ ] Read on-chain contract values and finish the identity record
-- [ ] Create and test an Etherscan V2 API key
-- [ ] Resolve listing-week block boundaries
+- [x] Read on-chain contract values and finish the identity record
+- [x] Create and test an Etherscan V2 API key
+- [x] Resolve listing-week block boundaries
 - [ ] Download the first raw transfer-data window
 - [ ] Validate completeness and duplicates
 
@@ -71,6 +71,7 @@ transfer history.
 
 - [01 - Contract identity validation](docs/01-contract-identity.md)
 - [02 - Etherscan API access](docs/02-etherscan-api-access.md)
+- [03 - Etherscan API access](docs/02-etherscan-api-access.md)
 
 ## Responsible-use disclaimer
 
