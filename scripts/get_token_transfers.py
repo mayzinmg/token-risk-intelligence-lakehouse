@@ -1,3 +1,5 @@
+import time
+
 import requests
 from config.settings import (
     API_KEY,
@@ -8,53 +10,81 @@ from config.settings import (
 
 START_BLOCK = 78813960
 END_BLOCK = 79289084
+PAGE_SIZE = 10
+MAX_PAGES = 3
+REQUEST_DELAY_SECONDS = 0.5
+def get_transfer_page(page: int, offset: int) -> list[dict]:
 
-params = {
+    params = {
         "chainid": CHAIN_ID,
         "module": "account",
         "action": "tokentx",
         "contractaddress":  CONTRACT_ADDRESS,
         "startblock": START_BLOCK,
         "endblock":END_BLOCK,
-        "page":1,
-        "offset":10,
+        "page":page,
+        "offset":offset,
         "sort":"asc",
         "apikey":API_KEY
     }
-try:
-    response = requests.get(
-        BASE_URL,
-        params=params,
-        timeout=30,
+    try:
+        response = requests.get(
+            BASE_URL,
+            params=params,
+            timeout=30,
+        )
+    except requests.RequestException as exc:
+        print(f"Request failed: {type(exc).__name__}")
+        raise SystemExit(1)
+
+    print("HTTP status:", response.status_code)
+
+    if not response.ok:
+        print("The server returned an HTTP error.")
+        raise SystemExit(1)
+
+    payload = response.json()
+    api_status = payload.get("status")
+    api_message = payload.get("message")
+    api_result = payload.get("result")
+
+    api_status = payload.get("status")
+    api_message = payload.get("message")
+    api_result = payload.get("result")
+
+    if api_status == "0" and (
+        api_message == "No transactions found"
+        or api_result == "No transactions found"
+    ):
+        print(f"Page {page}: returned 0 transfers")
+        return []
+
+    if api_status != "1":
+        raise RuntimeError(
+            f"Etherscan API error: {api_message}; result: {api_result}"
+        )
+
+    if not isinstance(api_result, list):
+        raise RuntimeError("Etherscan returned an unexpected result type.")
+
+    transfers = api_result
+    print(f"Page {page}: returned {len(transfers)} transfers")
+    return transfers
+
+all_transfers = []
+page = 1
+
+while page <= MAX_PAGES:
+    page_transfers = get_transfer_page(
+        page=page,
+        offset=PAGE_SIZE,
     )
-except requests.RequestException as exc:
-    print(f"Request failed: {type(exc).__name__}")
-    raise SystemExit(1)
 
+    all_transfers.extend(page_transfers)
 
-print("HTTP status:", response.status_code)
+    if len(page_transfers) < PAGE_SIZE:
+        break
 
-if not response.ok:
-    print("The server returned an HTTP error.")
-    raise SystemExit(1)
-
-payload = response.json()
-print("API status:", payload.get("status"))
-print("API message:", payload.get("message"))
-
-if payload.get("status") != "1":
-    raise RuntimeError(f"Etherscan API error: {payload.get('result')}")
-transfers = payload.get("result", [])
-print("Returned transfers:", len(transfers))
-
-if transfers:
-    first_transfer = transfers[0]
-
-    print("\nFirst transfer:")
-    print("Transaction hash:", first_transfer.get("hash"))
-    print("Block number:", first_transfer.get("blockNumber"))
-    print("Timestamp:", first_transfer.get("timeStamp"))
-    print("From:", first_transfer.get("from"))
-    print("To:", first_transfer.get("to"))
-    print("Raw value:", first_transfer.get("value"))
-    print("Token decimals:", first_transfer.get("tokenDecimal"))
+    page += 1
+    time.sleep(REQUEST_DELAY_SECONDS)
+print("Total collected:", len(all_transfers))
