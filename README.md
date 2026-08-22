@@ -45,6 +45,8 @@ and analytical outputs.
 
 ## Current progress
 
+## Project Progress
+
 - [x] Define a neutral research question
 - [x] Identify the candidate Polygon contract
 - [x] Cross-check the contract against the PolygonScan token tracker
@@ -52,8 +54,17 @@ and analytical outputs.
 - [x] Create and test an Etherscan V2 API key
 - [x] Resolve listing-week block boundaries
 - [x] Retrieve and inspect the first 10 raw transfer records
-- [x] Download the complete raw transfer-data window using pagination
-- [ ] Validate completeness and duplicates
+- [x] Download the complete listing-window dataset using reliable pagination
+- [x] Validate JSON structure, required fields and research boundaries
+- [x] Validate token identity, addresses and hashes
+- [x] Detect exact duplicate API records
+- [x] Generate a SHA-256 checksum and validation report
+- [ ] Create the Databricks Unity Catalog lakehouse structure
+- [ ] Load validated raw transfers into the Bronze Delta table
+- [ ] Transform and deduplicate transfers in the Silver Delta table
+- [ ] Build initial Gold analytical tables
+- [ ] Analyze listing-window risk indicators
+- [ ] Build the Agentic AI buyer-education assistant
 
 ## Study window
 

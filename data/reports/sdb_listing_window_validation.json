@@ -1,0 +1,44 @@
+{
+  "validation_status": "PASS",
+  "validated_at_utc": "2026-08-22T08:05:48.187261+00:00",
+  "source": {
+    "file_name": "sdb_listing_window.jsonl",
+    "sha256": "2582bdd1f8e2a7850ff41ebc439581578f79aea83af25114fce6d0d79868b8e9",
+    "chain_id": "137",
+    "contract_address": "0xd2d21ebc27dc39e188bf51fa28d3d09b93ab49c8"
+  },
+  "requested_window": {
+    "start_block": 78813960,
+    "end_block": 79289084,
+    "start_timestamp": 1762732800,
+    "end_timestamp": 1763683199
+  },
+  "observed_window": {
+    "first_transfer_utc": "2025-11-11T07:34:19+00:00",
+    "last_transfer_utc": "2025-11-20T22:16:07+00:00"
+  },
+  "counts": {
+    "total_lines": 2656,
+    "valid_json_records": 2656,
+    "invalid_json_lines": 0,
+    "missing_required_fields": 0,
+    "invalid_block_numbers": 0,
+    "blocks_outside_window": 0,
+    "wrong_contract": 0,
+    "invalid_timestamps": 0,
+    "timestamps_outside_window": 0,
+    "invalid_token_values": 0,
+    "invalid_token_decimals": 0,
+    "unexpected_token_decimals": 0,
+    "wrong_token_symbol": 0,
+    "exact_duplicate_records": 0,
+    "invalid_address_fields": 0,
+    "invalid_hash_fields": 0,
+    "total_validation_errors": 0
+  },
+  "limitations": [
+    "The Etherscan tokentx response does not include logIndex.",
+    "Exact duplicate records were checked, but definitive event identity requires blockchain log data.",
+    "A transfer does not independently prove a sale or wallet ownership."
+  ]
+}
