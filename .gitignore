@@ -27,3 +27,7 @@ data/gold/*
 # Operating systems
 .DS_Store
 Thumbs.db
+# Locally extracted blockchain data
+data/raw/
+data/checkpoints/
+data/logs/

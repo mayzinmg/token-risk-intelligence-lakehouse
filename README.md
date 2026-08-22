@@ -52,7 +52,7 @@ and analytical outputs.
 - [x] Create and test an Etherscan V2 API key
 - [x] Resolve listing-week block boundaries
 - [x] Retrieve and inspect the first 10 raw transfer records
-- [ ] Download the complete raw transfer-data window using pagination
+- [x] Download the complete raw transfer-data window using pagination
 - [ ] Validate completeness and duplicates
 
 ## Study window
