@@ -59,10 +59,10 @@ and analytical outputs.
 - [x] Validate token identity, addresses and hashes
 - [x] Detect exact duplicate API records
 - [x] Generate a SHA-256 checksum and validation report
-- [ ] Create the Databricks Unity Catalog lakehouse structure
-- [ ] Load validated raw transfers into the Bronze Delta table
-- [ ] Transform and deduplicate transfers in the Silver Delta table
-- [ ] Build initial Gold analytical tables
+- [x] Create the Databricks Unity Catalog lakehouse structure
+- [x] Load validated raw transfers into the Bronze Delta table
+- [x] Transform and deduplicate transfers in the Silver Delta table
+- [x] Build initial Gold analytical tables
 - [ ] Analyze listing-window risk indicators
 - [ ] Build the Agentic AI buyer-education assistant
 
@@ -85,6 +85,11 @@ transfer history.
 - [02 - Etherscan API access](docs/02-etherscan-api-access.md)
 - [03 - Research Window](docs/03-research-window.md)
 - [04 - First Token Transfer Request](docs/04-first-token-transfer-request.md)
+
+## Databricks evidence
+
+The executed Chapter 07 notebook is available in
+[`evidence/chapter-07`](evidence/chapter-07/).
 
 ## Responsible-use disclaimer
 
